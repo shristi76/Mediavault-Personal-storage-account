@@ -249,4 +249,5 @@ Download limits are enforced using MongoDB's atomic `$inc` operation rather than
 This helps prevent race conditions when multiple download requests happen at the same time.
 
 ---
-
+## License
+This project is licensed under the MIT License.
