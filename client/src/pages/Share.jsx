@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { api } from "../config";
 import "./Share.css";
 
 function Share() {
@@ -17,9 +18,7 @@ function Share() {
   useEffect(() => {
     const fetchSharedMedia = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/share/${token}`
-        );
+        const response = await fetch(api(`/api/share/${token}`));
 
         const data = await response.json();
 
@@ -49,12 +48,9 @@ function Share() {
       setDownloading(true);
       setError("");
 
-      const response = await fetch(
-        `http://localhost:5000/api/share/${token}/download`,
-        {
-          method: "POST",
-        }
-      );
+      const response = await fetch(api(`/api/share/${token}/download`), {
+        method: "POST",
+      });
 
       const data = await response.json();
 

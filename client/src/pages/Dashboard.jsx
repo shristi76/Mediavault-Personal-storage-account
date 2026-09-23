@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { api, APP_URL } from "../config";
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -41,14 +42,11 @@ function Dashboard() {
       params.append("page", pageValue);
       params.append("limit", limit);
 
-      const response = await fetch(
-        `http://localhost:5000/api/media?${params.toString()}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(api(`/api/media?${params.toString()}`), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const data = await response.json();
 
@@ -69,14 +67,11 @@ function Dashboard() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(
-        "http://localhost:5000/api/share",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(api("/api/share"), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const data = await response.json();
 
@@ -122,16 +117,13 @@ function Dashboard() {
       const formData = new FormData();
       formData.append("file", selectedFile);
 
-      const response = await fetch(
-        "http://localhost:5000/api/media/upload",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        }
-      );
+      const response = await fetch(api("/api/media/upload"), {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
 
       const data = await response.json();
 
@@ -163,21 +155,18 @@ function Dashboard() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(
-        "http://localhost:5000/api/share",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            mediaId,
-            expiresInHours: 24,
-            maxDownloads: 5,
-          }),
-        }
-      );
+      const response = await fetch(api("/api/share"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          mediaId,
+          expiresInHours: 24,
+          maxDownloads: 5,
+        }),
+      });
 
       const data = await response.json();
 
@@ -186,8 +175,7 @@ function Dashboard() {
         return;
       }
 
-      const shareUrl =
-        `http://localhost:5173/share/${data.shareLink.token}`;
+      const shareUrl = `${APP_URL}/share/${data.shareLink.token}`;
 
       await navigator.clipboard.writeText(shareUrl);
 
@@ -214,15 +202,12 @@ function Dashboard() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(
-        `http://localhost:5000/api/share/${shareLinkId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(api(`/api/share/${shareLinkId}`), {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const data = await response.json();
 
@@ -246,8 +231,7 @@ function Dashboard() {
 
   const handleCopyShareLink = async (token) => {
     try {
-      const shareUrl =
-        `http://localhost:5173/share/${token}`;
+      const shareUrl = `${APP_URL}/share/${token}`;
 
       await navigator.clipboard.writeText(shareUrl);
 
@@ -270,15 +254,12 @@ function Dashboard() {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(
-        `http://localhost:5000/api/media/${mediaId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch(api(`/api/media/${mediaId}`), {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const data = await response.json();
 
