@@ -8,7 +8,7 @@ It provides authenticated media storage, Cloudinary-based file handling, secure 
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 
@@ -42,7 +42,7 @@ It provides authenticated media storage, Cloudinary-based file handling, secure 
 * MongoDB Atlas — Database
 * Cloudinary — Media storage
 ---
-## 🔄 How It Works
+##  How It Works
 
 ### 1. Authentication
 
@@ -152,7 +152,16 @@ MongoDB automatically removes expired share-link documents.
 
 ---
 
-## 🔐 API Overview
+## DEMO
+<img width="1220" height="875" alt="Screenshot 2026-09-23 181317" src="https://github.com/user-attachments/assets/dd029d35-56ad-4bda-b61e-b6a79701b6a3" />
+
+---
+
+<img width="798" height="892" alt="Screenshot 2026-09-23 180501" src="https://github.com/user-attachments/assets/006e47d2-97dd-4d8f-b4f3-c75ee8640716" />
+
+---
+
+##  API Overview
 
 ### Authentication
 
